@@ -1,0 +1,29 @@
+INSERT INTO CATEGORY_TABLE VALUES('C01','iPhone');
+INSERT INTO CATEGORY_TABLE VALUES('C02','iPad');
+INSERT INTO CATEGORY_TABLE VALUES('C03','Mac');
+INSERT INTO CATEGORY_TABLE VALUES('C04','Watch');
+INSERT INTO CATEGORY_TABLE VALUES('C05','AirPods');
+
+INSERT INTO CAPACITY_TABLE VALUES('CP01',128,0);
+INSERT INTO CAPACITY_TABLE VALUES('CP02',256,100);
+INSERT INTO CAPACITY_TABLE VALUES('CP03',512,200);
+
+INSERT INTO STATUS_TABLE VALUES(1,'active');
+INSERT INTO STATUS_TABLE VALUES(0,'inactive');
+
+INSERT INTO ROLE_TABLE VALUES('R01','manager');
+INSERT INTO ROLE_TABLE VALUES('R02','admin');
+INSERT INTO ROLE_TABLE VALUES('R03','normal staff');
+INSERT INTO ROLE_TABLE VALUES('R04','customer');
+
+INSERT INTO LOGIN_REGISTER_TABLE VALUES('1001', 'manager@gmail.com', 'Manager1234', 1, null, 'R01');
+INSERT INTO LOGIN_REGISTER_TABLE VALUES('1002', 'admin@gmail.com', 'Admin1234', 1, null, 'R02');
+INSERT INTO LOGIN_REGISTER_TABLE VALUES('1003', 'staff@gmail.com', 'Staff1234', 1, null, 'R03');
+INSERT INTO LOGIN_REGISTER_TABLE VALUES('1004', 'cust1@gmail.com', 'Cust1234', 1, null, 'R04');
+
+INSERT INTO ACCOUNT_DETAILS_TABLE VALUES('S001', 'manager', 'n', 0, 'n', 'n', 0, '1001');
+INSERT INTO ACCOUNT_DETAILS_TABLE VALUES('S002', 'admin', 'n', 0, 'n', 'n', 0, '1002');
+INSERT INTO ACCOUNT_DETAILS_TABLE VALUES('S003', 'staff', 'n', 0, 'n', 'n', 0, '1003');
+INSERT INTO ACCOUNT_DETAILS_TABLE VALUES('S004', 'customer', 'n', 0, 'n', 'n', 0, '1004');
+
+INSERT INTO ABOUTUS_TABLE VALUES ('A01', 'ABOUT US', 'Pineapple is an online shop that manages by a company called Apple and provides Apple products for the public or occasions. At this company, we are always trying to examine the quality of each product from time to time in order to let customers get a good quality product. Now, we also aim to provide prominent customer service to the customer. We will strive to haul the product into the hands of customers.');

@@ -1,0 +1,135 @@
+CREATE TABLE Role_Table
+(
+	RoleID char(3) NOT NULL PRIMARY KEY,
+	RoleTitle varchar(255) NOT NULL
+);
+
+CREATE TABLE Status_Table 
+(
+	Status int,
+	PRIMARY KEY(Status),
+  	StatusTitle varchar(255)	
+);
+
+CREATE TABLE Capacity_Table 
+(
+	CapacityID	char(4) NOT NULL PRIMARY KEY,
+	Capacity	int NOT NULL,
+	AddOns	int NOT NULL
+);
+
+CREATE TABLE Category_Table 
+(
+	CategoryID	char(3) NOT NULL PRIMARY KEY,
+	CategoryName	varchar(255) NOT NULL
+);
+
+CREATE TABLE Bank_Card_Table
+(
+    CardID char(4) NOT NULL PRIMARY KEY,
+    CardNumber varchar(255) NOT NULL,
+    Cvv char(3) NOT NULL,
+      ExpiredDate int,
+      Password varchar(255) NOT NULL,
+      CardType varchar(255) NOT NULL
+);
+
+CREATE TABLE Login_Register_Table 
+(
+	LoginID	char(4),
+	Email 	varchar(255),
+	Password varchar(255),
+	Status int,
+	LastLoginTime DATE,
+  	RoleID char(3),
+	PRIMARY KEY(LoginID),
+	FOREIGN KEY (RoleID) REFERENCES Role_Table(RoleID),
+	FOREIGN KEY (Status) REFERENCES Status_Table(Status)
+);
+
+CREATE TABLE Account_Details_Table 
+(
+	AccountID CHAR(4) PRIMARY KEY,
+	Username VARCHAR(255),
+	Gender CHAR(1),
+	Age INT ,
+	Phone VARCHAR(255),
+	Address VARCHAR(255),
+	Points INT,
+  	LoginID char(4), 
+  	FOREIGN KEY (LoginID) REFERENCES Login_Register_Table(LoginID)
+);
+
+CREATE TABLE Product_Table 
+(
+	ProductID	char(4) NOT NULL PRIMARY KEY,
+	ProductName	varchar(255) NOT NULL,
+	Description	varchar(255) NOT NULL,
+	OriginalPrice	int NOT NULL,
+	ImageURL	blob,
+	Quantity	int,
+	StatusID	int,
+  	CategoryID  	char(3),
+	FOREIGN KEY (StatusID) REFERENCES Status_Table(Status),
+	FOREIGN KEY (CategoryID) REFERENCES Category_Table(CategoryID)
+);
+
+CREATE TABLE Order_History_Table
+(
+	OrderHistID char(5),
+	TotalPrice  int,
+	OrderStatus varchar(255),
+	DatePurchase timestamp NOT NULL,
+	CardID char(4),
+	AccountID char(4),
+	PRIMARY KEY(OrderHistID),
+	FOREIGN KEY (CardID) REFERENCES Bank_Card_Table(CardID),
+	FOREIGN KEY (AccountID) REFERENCES Account_Details_Table(AccountID)
+);
+
+CREATE TABLE Report_Table
+(
+    ReportID varchar(255) NOT NULL PRIMARY KEY,
+    ReportTitle varchar(255),
+    DataQuery varchar(1000),
+    ReportType varchar(255),
+    CreatedTime DATE NOT NULL,
+    CreatedBy char(4),
+    FOREIGN KEY (CreatedBy) REFERENCES Account_Details_Table(AccountID)
+);
+
+CREATE TABLE Order_Table 
+(
+  	OrderID char(4) NOT NULL PRIMARY KEY,
+  	ProductID char(4),
+  	Quantity int NOT NULL,
+  	Price int NOT NULL,
+  	Capacity int,
+	Rating int,
+	Comment varchar(255),
+  	OrderHistID char(5),
+  	FOREIGN KEY (ProductID) REFERENCES Product_Table(ProductID),
+  	FOREIGN KEY (OrderHistID) REFERENCES Order_History_Table(OrderHistID)
+);
+
+CREATE TABLE Cart_Table 
+(
+   CartID CHAR(4) NOT NULL PRIMARY KEY,
+   ProductName varchar(255),
+   Category varchar(255) NOT NULL,
+   Price int,
+   Capacity int,
+   AddOns int,
+   Quantity int NOT NULL,
+   ProductID char(4),
+   AccountID char(4),
+   FOREIGN KEY (ProductID) REFERENCES Product_Table(ProductID),
+   FOREIGN KEY (AccountID) REFERENCES ACCOUNT_DETAILS_TABLE(AccountID)
+);
+
+CREATE TABLE AboutUs_Table
+(
+        AboutID char(3) NOT NULL PRIMARY KEY,
+        AboutTitle varchar(255) NOT NULL,
+        AboutDesc varchar(500) NOT NULL
+);
